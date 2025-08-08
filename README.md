@@ -260,7 +260,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Desktop app wrapper (Tauri)
 - [ ] Advanced zoom easing options
 - [ ] Batch export functionality
-- [ ] Cloud storage integration (optional)
+- [ ] Local storage integration
 
 ### Version 1.2
 - [ ] Multi-monitor support
