@@ -1,58 +1,53 @@
 {
     "manifest_version": 3,
-    "name": "CursorFlow - Screen Recording with Auto-Zoom",
+    "name": "CursorFlow - Screen Recorder",
     "version": "1.0.0",
-    "description": "Record your screen with intelligent cursor-following zoom effects for engaging tutorials and demos",
-    
+    "description": "Intelligent screen recording with automatic cursor-following zoom effects",
     "permissions": [
-      "activeTab",
-      "storage",
-      "desktopCapture",
-      "tabCapture"
+        "desktopCapture",
+        "storage",
+        "activeTab",
+        "tabs",
+        "downloads",
+        "scripting"
     ],
-    
-    "host_permissions": [
-      "<all_urls>"
-    ],
-    
     "background": {
-      "service_worker": "background/service-worker.js",
-      "type": "module"
+        "service_worker": "background/service-worker.js"
     },
-    
     "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["content/cursor-tracker.js"],
-        "run_at": "document_start",
-        "all_frames": true
-      }
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content/cursor-tracker.js"
+            ]
+        }
     ],
-    
     "action": {
-      "default_popup": "popup/popup.html",
-      "default_title": "CursorFlow Recorder",
-      "default_icon": {
+        "default_popup": "popup/popup.html",
+        "default_title": "CursorFlow Recorder",
+        "default_icon": {
+            "16": "assets/icons/icon16.svg",
+            "32": "assets/icons/icon32.svg",
+            "48": "assets/icons/icon48.svg",
+            "128": "assets/icons/icon128.svg"
+        }
+    },
+    "icons": {
         "16": "assets/icons/icon16.svg",
         "32": "assets/icons/icon32.svg",
         "48": "assets/icons/icon48.svg",
         "128": "assets/icons/icon128.svg"
-      }
     },
-    
-    "icons": {
-      "16": "assets/icons/icon16.svg",
-      "32": "assets/icons/icon32.svg",
-      "48": "assets/icons/icon48.svg",
-      "128": "assets/icons/icon128.svg"
-    },
-    
     "web_accessible_resources": [
-      {
-        "resources": ["src/injected/*"],
-        "matches": ["<all_urls>"]
-      }
-    ],
-    
-    "minimum_chrome_version": "88"
-  }
+        {
+            "resources": [
+                "editor/*"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ]
+}

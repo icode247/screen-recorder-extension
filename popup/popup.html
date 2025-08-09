@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CursorFlow Recorder</title>
+    <style>
+        body {
+            width: 320px;
+            height: 400px;
+            margin: 0;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .status {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .status-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .recording {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #4338ca;
+        }
+
+        .btn-primary:hover {
+            background: white;
+            transform: translateY(-1px);
+        }
+
+        .btn-danger {
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .settings {
+            margin-top: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .setting-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .setting-row:last-child {
+            margin-bottom: 0;
+        }
+
+        select {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            color: white;
+            padding: 4px 8px;
+        }
+
+        select option {
+            background: #4338ca;
+            color: white;
+        }
+
+        .recordings {
+            margin-top: 16px;
+        }
+
+        .recording-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .recording-name {
+            font-size: 14px;
+            flex: 1;
+            margin-right: 8px;
+        }
+
+        .recording-actions {
+            display: flex;
+            gap: 4px;
+        }
+
+        .btn-small {
+            padding: 4px 8px;
+            font-size: 12px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">🎯 CursorFlow</div>
+        <div class="subtitle">Intelligent Screen Recording</div>
+    </div>
+
+    <div class="status" id="status">
+        <div class="status-icon" id="statusIcon">⚫</div>
+        <div id="statusText">Ready to Record</div>
+    </div>
+
+    <div class="controls">
+        <button class="btn btn-primary" id="startBtn">Start Recording</button>
+        <button class="btn btn-danger hidden" id="stopBtn">Stop Recording</button>
+        <button class="btn btn-secondary" id="viewRecordingsBtn">View Recordings</button>
+    </div>
+
+    <div class="settings">
+        <div class="setting-row">
+            <label>Quality:</label>
+            <select id="qualitySelect">
+                <option value="720p">720p</option>
+                <option value="1080p" selected>1080p</option>
+                <option value="1440p">1440p</option>
+            </select>
+        </div>
+        <div class="setting-row">
+            <label>FPS:</label>
+            <select id="fpsSelect">
+                <option value="24">24 FPS</option>
+                <option value="30" selected>30 FPS</option>
+                <option value="60">60 FPS</option>
+            </select>
+        </div>
+        <div class="setting-row">
+            <label>Auto Zoom:</label>
+            <select id="autoZoomSelect">
+                <option value="true" selected>Enabled</option>
+                <option value="false">Disabled</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="recordings" id="recordingsSection">
+        <h3 style="margin: 0 0 12px 0; font-size: 16px;">Recent Recordings</h3>
+        <div id="recordingsList"></div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>
